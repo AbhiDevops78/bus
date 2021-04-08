@@ -1,0 +1,49 @@
+server:
+  type: simple
+  applicationContextPath: "/"
+  adminContextPath: "/admin"
+  connector:
+    port: 8080
+    type: http
+
+logging:
+  level: INFO
+  loggers:
+    io.github.harishb2k.easy.database.mysql: DEBUG
+    com.harish.dummy.persistence.mysql.dao: DEBUG
+
+mySqlConfigs:
+  configs:
+    default:
+      driverClassName: "com.mysql.jdbc.Driver"
+      username: ${DEFAULT_DB_USER}
+      password: ${DEFAULT_DB_PASS}
+      jdbcUrl: jdbc:mysql://${DEFAULT_DB_HOST}:${DEFAULT_DB_PORT}/${DEFAULT_DB_NAME}?autoReconnect=true&characterEncoding=UTF-8&useSSL=false
+
+easyHttpConfig:
+  servers:
+    jsonplaceholder:
+      host: jsonplaceholder.typicode.com
+      port: 443
+      https: true
+      connectTimeout: 1000
+      connectionRequestTimeout: 1000
+  apis:
+    getPosts:
+      method: GET
+      path: /posts/${id}
+      server: jsonplaceholder
+      timeout: 10000
+    getPostsAsync:
+      method: GET
+      path: /posts/${id}
+      server: jsonplaceholder
+      timeout: 1000
+      async: true
+
+
+locks:
+  lockConfigs:
+    default:
+      timeoutInMs: 1000
+      type: MYSQL

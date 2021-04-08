@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "bus.headers.pub.proto.pojo";
+option java_outer_classname = "API";
+option objc_class_prefix = "HLW";
+
+import "google/protobuf/any.proto";
+import "google/protobuf/wrappers.proto";
+
+package bus;
+
+message SampleRequest {
+    string input = 1;
+}
+
+message SampleResponse {
+    string status = 1;
+    string string_passed_in_input = 2;
+}
